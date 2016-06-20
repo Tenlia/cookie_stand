@@ -3,20 +3,30 @@ var firstAndPike = {
   minCust: 23,
   maxCust: 65,
   avgCookies: 6.3,
-  hourlyCust: [],
   hourlySales: []
 };
 
-firstAndPike.pikeCust = function(){
-  return Math.floor(Math.random() * (firstAndPike.maxCust - firstAndPike.minCust + 1)) + firstAndPike.minCust;
+firstAndPike.calcHourlyCookies = function(){
+  for(i = 0; i < hours.length; i++){
+    var pikeCust = Math.floor(Math.random() * (firstAndPike.maxCust - firstAndPike.minCust + 1)) + firstAndPike.minCust;
+    var hourlyCookies = Math.floor(pikeCust * firstAndPike.avgCookies);
+    firstAndPike.hourlySales.push(hourlyCookies);
+  }
 };
 
-firstAndPike.pikeCookie = function(){
-  return(firstAndPike.pikeCust * firstAndPike.avgCookies);
-  firstAndPike.hourlySales.push(firstAndPike.pikeCookie);
-};
-
-
-firstAndPike.hourCookies = function {
+firstAndPike.displayList = function(){
+  var total = 0;
   var pike = document.getElementById('pike');
-  for(i = 0; i < firstAndPike.hours.length; i++){
+  for(i = 0; i < hours.length; i++){
+    var hourly = document.createElement('li');
+    hourly.textContent = hours[i] + ': ' + firstAndPike.hourlySales[i];
+    pike.appendChild(hourly);
+    console.log(total += firstAndPike.hourlySales[i]);
+  }
+  var totalCookies = document.createElement('li');
+  totalCookies.textContent = 'Total: ' + total;
+  pike.appendChild(totalCookies);
+};
+
+firstAndPike.calcHourlyCookies();
+firstAndPike.displayList();
