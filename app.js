@@ -1,7 +1,7 @@
 'use strict';
 
 var hours = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm', '8:00pm'];
-var locations = [];
+var stands = [];
 var cookieTable = document.getElementById('cookieTable');
 
 //changed the symbols to properly work with function
@@ -13,7 +13,7 @@ function CookieStand(locationName, minCust, maxCust, avgCookies) {
   this.hourlyCust = [];
   this.hourlyCookieSales = [];
   this.totalSales = 0;
-  locations.push(this);
+  stands.push(this);
 };
 
 //we have to make a data group for each cart
@@ -36,12 +36,6 @@ CookieStand.prototype.calcHourlyCookies = function() {
   }
 };
 
-pike.calcHourlyCookies();
-seaTac.calcHourlyCookies();
-seaCent.calcHourlyCookies();
-capHill.calcHourlyCookies();
-alki.calcHourlyCookies();
-
 function makeHeaderCells() {
   var trEl = document.createElement('tr');//make table row
   var thEl = document.createElement('th');//first header
@@ -57,9 +51,9 @@ function makeHeaderCells() {
   }
   cookieTable.appendChild(trEl);//add row to table
 };
-makeHeaderCells();
 
 CookieStand.prototype.cookieStandTableCells = function() {
+  this.calcHourlyCookies();
   var trEl = document.createElement('tr'); //make the row
   var tdEl = document.createElement('td'); //make the cell
   tdEl.textContent = this.locationName; //find the data (name)
@@ -75,8 +69,11 @@ CookieStand.prototype.cookieStandTableCells = function() {
   cookieTable.appendChild(trEl);
 };
 
-pike.cookieStandTableCells();
-seaTac.cookieStandTableCells();
-seaCent.cookieStandTableCells();
-capHill.cookieStandTableCells();
-alki.cookieStandTableCells();
+var render = function() {
+  makeHeaderCells();
+  for(var i = 0; i < stands.length; i++) {
+    stands[i].cookieStandTableCells();
+  }
+};
+
+render();
