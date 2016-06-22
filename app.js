@@ -83,10 +83,12 @@ render();
 var cookieForm = document.getElementById('cookie_form');
 // var cookieFormArray = [];
 
+// event handler
 function handleCookieForm(event) {
   event.preventDefault();
   console.log('I heard a click');
 
+// pulling data from form
   var locationName = document.getElementById('location_name');
   var minCust = document.getElementById('min_cust');
   var maxCust = document.getElementById('max_cust');
@@ -94,8 +96,10 @@ function handleCookieForm(event) {
   var address = document.getElementById('add_address');
   var phoneNum = document.getElementById('phone_num');
 
+// creating new instance of a cookie stand
   var newCookieStand = new CookieStand(locationName.value, minCust.value, maxCust.value, avgCookies.value, address.value, phoneNum.value);
 
+  newCookieStand.cookieStandTableCells();
   // console.log('location name is', locationName.value);
   // console.log('min cust is', minCust.value);
   // console.log('max cust is', maxCust.value);
@@ -106,13 +110,14 @@ function handleCookieForm(event) {
 
   console.log(stands);
 
-  function() {
-    chatList.innerHTML = '';
-    console.log('You just cleared the chat list!');
-    allComments = [];
-  });
+  // function() {
+  //   chatList.innerHTML = '';
+  //   console.log('You just cleared the chat list!');
+  //   allComments = [];
+  // });
   // cookieTable = null;
-  render();
+// render forming a new table;
 };
 
+// listening for click and handling click with handler above
 cookieForm.addEventListener('submit', handleCookieForm, false);
