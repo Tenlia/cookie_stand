@@ -71,6 +71,7 @@ CookieStand.prototype.cookieStandTableCells = function() {
   cookieTable.appendChild(trEl);
 };
 
+// render the header and table cells with conttent
 var render = function() {
   makeHeaderCells();
   for(var i = 0; i < stands.length; i++) {
@@ -79,16 +80,16 @@ var render = function() {
 };
 
 render();
-
+// Grab form in html
 var cookieForm = document.getElementById('cookie_form');
 // var cookieFormArray = [];
 
 // event handler
 function handleCookieForm(event) {
   event.preventDefault();
-  console.log('I heard a click');
+// console.log('I heard a click');
 
-// pulling data from form
+// pulling data from form into handler
   var locationName = document.getElementById('location_name');
   var minCust = document.getElementById('min_cust');
   var maxCust = document.getElementById('max_cust');
@@ -100,23 +101,19 @@ function handleCookieForm(event) {
   var newCookieStand = new CookieStand(locationName.value, minCust.value, maxCust.value, avgCookies.value, address.value, phoneNum.value);
 
   newCookieStand.cookieStandTableCells();
-  // console.log('location name is', locationName.value);
-  // console.log('min cust is', minCust.value);
-  // console.log('max cust is', maxCust.value);
-  // console.log('avg Cookies is', avgCookies.value);
-  // console.log('address is', address.value);
-  // console.log('phone number is', phoneNum.value);
-  // console.log(event.target.location_name.value);
 
   console.log(stands);
 
-  // function() {
-  //   chatList.innerHTML = '';
-  //   console.log('You just cleared the chat list!');
-  //   allComments = [];
-  // });
-  // cookieTable = null;
-// render forming a new table;
+// reset fields to be blank after creating new row
+  event.target.location_name.value = null;
+  event.target.min_cust.value = null;
+  event.target.max_cust.value = null;
+  event.target.avg_cookies.value = null;
+  event.target.add_address.value = null;
+  event.target.phone_num.value = null;
+
+// alert to confirm successful submission
+  alert('you\'ve added ' + newCookieStand.locationName + ' to the table!');
 };
 
 // listening for click and handling click with handler above
