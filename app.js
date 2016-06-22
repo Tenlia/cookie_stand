@@ -6,7 +6,7 @@ var cookieTable = document.getElementById('cookieTable');
 
 //changed the symbols to properly work with function
 function CookieStand(locationName, minCust, maxCust, avgCookies) {
-  this.locationName = locationName,
+  this.locationName = locationName;
   this.minCust = minCust;
   this.maxCust = maxCust;
   this.avgCookies = avgCookies;
@@ -70,7 +70,7 @@ CookieStand.prototype.cookieStandTableCells = function() {
   for(var i = 0; i < hours.length; i++){
     var tdEl = document.createElement('td');
     tdEl.textContent = this.hourlyCookieSales[i];
-    trEl.appendChild('tdEl');
+    trEl.appendChild(tdEl);
   }
   cookieTable.appendChild(trEl);
 };
