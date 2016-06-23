@@ -38,7 +38,9 @@ CookieStand.prototype.calcHourlyCookies = function() {
   for(var i = 0; i < hours.length; i++){
     this.hourlyCookieSales[i] = Math.floor(this.hourlyCust[i] * this.avgCookies);
     this.totalCartSales += this.hourlyCookieSales[i];
+    hourlyTotals[i] += this.hourlyCookieSales[i];
   }
+  totalDaySales += this.totalCartSales;
 };
 
 function makeHeaderCells() {
@@ -77,52 +79,45 @@ function makeTotalsCells() {
 
 CookieStand.prototype.cookieStandTableCells = function() {
   this.calcHourlyCookies();
-  var totalRow = document.getElementById('totalCells');
-  if(totalRow){
-    document.getElementById('totalCells').remove();
-  }
+  idArray.push(this.locationName);
   var trEl = document.createElement('tr'); //make the row
-  trEl.id = this.locationName;
-  //if it's the same as the one that you just made, get rid of the old one
-    var tdEl = document.createElement('td'); //make the cell
-    tdEl.textContent = this.locationName; //find the data (name)
-    trEl.appendChild(tdEl); //add the cell to the row
-    var tdEl = document.createElement('td'); //make another cell
-    tdEl.textContent = this.totalCartSales;
-    totalDaySales += this.totalCartSales;
+  var tdEl = document.createElement('td'); //make the cell
+  tdEl.textContent = this.locationName; //find the data (name)
+  trEl.appendChild(tdEl); //add the cell to the row
+  var tdEl = document.createElement('td'); //make another cell
+  tdEl.textContent = this.totalCartSales;
+  trEl.appendChild(tdEl);
+  for(var i = 0; i < hours.length; i++){
+    var tdEl = document.createElement('td');
+    tdEl.textContent = this.hourlyCookieSales[i];
     trEl.appendChild(tdEl);
-    for(var i = 0; i < hours.length; i++){
-      var tdEl = document.createElement('td');
-      tdEl.textContent = this.hourlyCookieSales[i];
-      trEl.appendChild(tdEl);
-      hourlyTotals[i] += this.hourlyCookieSales[i];
-    }
   }
   cookieTable.appendChild(trEl);
-  makeTotalsCells();
-}
-
-function rowChecker() {
-  for(var i = 0; i < idArray.length; i++){
-    if(this.locationName === idArray[i]){
-      document.getElementById(idArray[i]).remove();
-      idArray.push(this.locationName);
-      idArray.pop();
-    //otherwise, just add it on and move the totals down
-    }else{
-      idArray.push(this.locationName);
-    }
 };
+
+// function rowChecker() {
+//   for(var i = 0; i < idArray.length; i++){
+//     if(this.locationName === idArray[i]){
+//       document.getElementById(idArray[i]).remove();
+//       idArray.push(this.locationName);
+//       idArray.pop();
+//     //otherwise, just add it on and move the totals down
+//     }else{
+//       idArray.push(this.locationName);
+//     }
+// };
 
 // render the header and table cells with content
 var render = function() {
-  makeHeaderCells();
+  makeHeaderCells(); //adds the header row
   for(var i = 0; i < stands.length; i++) {
     stands[i].cookieStandTableCells();
   }
+  makeTotalsCells(); //adds the totals row
 };
 
 render();
+
 // Grab form in html
 var cookieForm = document.getElementById('cookie_form');
 
