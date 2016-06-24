@@ -1,7 +1,10 @@
 'use strict';
 
 var hours = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm', '8:00pm'];
+var hourlyTotals = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+var totalDaySales = 0;
 var stands = [];
+var idArray = [];
 var cookieTable = document.getElementById('cookieTable');
 
 //changed the symbols to properly work with function
@@ -14,11 +17,11 @@ function CookieStand(locationName, minCust, maxCust, avgCookies, address, phoneN
   this.phoneNum = phoneNum;
   this.hourlyCust = [];
   this.hourlyCookieSales = [];
-  this.totalSales = 0;
+  this.totalCartSales = 0;
   stands.push(this);
 };
 
-//we have to make a data group for each cart
+//we have to make an object for each cart
 var pike = new CookieStand('First and Pike', 23, 65, 6.3, 'addressFirstAndPike', '206-xxx-xxxx');
 var seaTac = new CookieStand('SeaTac Airport', 3, 24, 1.2, 'addressSeaTac', '206-2xx-xxxx');
 var seaCent = new CookieStand('Seattle Center', 11, 38, 3.7, 'addressSeaCent', '206-3xx-xxxx');
@@ -34,12 +37,15 @@ CookieStand.prototype.calcHourlyCookies = function() {
   this.calcHourlyCust(); //separated it out so that it was easier to read and I could call it
   for(var i = 0; i < hours.length; i++){
     this.hourlyCookieSales[i] = Math.floor(this.hourlyCust[i] * this.avgCookies);
-    this.totalSales += this.hourlyCookieSales[i];
+    this.totalCartSales += this.hourlyCookieSales[i];
+    hourlyTotals[i] += this.hourlyCookieSales[i];
   }
+  totalDaySales += this.totalCartSales;
 };
 
 function makeHeaderCells() {
   var trEl = document.createElement('tr');//make table row
+  trEl.id = 'headCells';
   var thEl = document.createElement('th');//first header
   thEl.textContent = ' ';//make blank
   trEl.appendChild(thEl);//add to row
@@ -54,14 +60,32 @@ function makeHeaderCells() {
   cookieTable.appendChild(trEl);//add row to table
 };
 
+function makeTotalsCells() {
+  var trEl = document.createElement('tr');
+  trEl.id = 'totalCells';
+  var tdEl = document.createElement('td');
+  tdEl.textContent = 'Totals';
+  trEl.appendChild(tdEl);
+  var tdEl = document.createElement('td');
+  tdEl.textContent = totalDaySales;
+  trEl.appendChild(tdEl);
+  for(var i = 0; i < hours.length; i++){
+    var tdEl = document.createElement('td');
+    tdEl.textContent = hourlyTotals[i];
+    trEl.appendChild(tdEl);
+  }
+  cookieTable.appendChild(trEl);
+};
+
 CookieStand.prototype.cookieStandTableCells = function() {
   this.calcHourlyCookies();
+  idArray.push(this.locationName);
   var trEl = document.createElement('tr'); //make the row
   var tdEl = document.createElement('td'); //make the cell
   tdEl.textContent = this.locationName; //find the data (name)
   trEl.appendChild(tdEl); //add the cell to the row
   var tdEl = document.createElement('td'); //make another cell
-  tdEl.textContent = this.totalSales;
+  tdEl.textContent = this.totalCartSales;
   trEl.appendChild(tdEl);
   for(var i = 0; i < hours.length; i++){
     var tdEl = document.createElement('td');
@@ -71,23 +95,23 @@ CookieStand.prototype.cookieStandTableCells = function() {
   cookieTable.appendChild(trEl);
 };
 
-// render the header and table cells with conttent
+// render the header and table cells with content
 var render = function() {
-  makeHeaderCells();
+  makeHeaderCells(); //adds the header row
   for(var i = 0; i < stands.length; i++) {
     stands[i].cookieStandTableCells();
   }
+  makeTotalsCells(); //adds the totals row
 };
 
 render();
+
 // Grab form in html
 var cookieForm = document.getElementById('cookie_form');
-// var cookieFormArray = [];
 
 // event handler
 function handleCookieForm(event) {
   event.preventDefault();
-// console.log('I heard a click');
 
 // pulling data from form into handler
   var locationName = document.getElementById('location_name');
@@ -97,12 +121,18 @@ function handleCookieForm(event) {
   var address = document.getElementById('add_address');
   var phoneNum = document.getElementById('phone_num');
 
-// creating new instance of a cookie stand
+// creating new cookie stand object
   var newCookieStand = new CookieStand(locationName.value, minCust.value, maxCust.value, avgCookies.value, address.value, phoneNum.value);
 
+//check if row already exists
+  for(var i = 0; i < idArray.length; i++){
+    if(this.locationName === idArray[i]){
+      document.getElementById(idArray[i]).remove();
+      remove = idArray.splice(this.locationName);
+    }
+  }
+//create new cookie stand's row
   newCookieStand.cookieStandTableCells();
-
-  console.log(stands);
 
 // reset fields to be blank after creating new row
   event.target.location_name.value = null;
