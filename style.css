@@ -1,32 +1,86 @@
 * {
   margin: 0px;
   padding: 0px;
+  font-family: 'Slabo 27px', serif;
+  /*outline: 1px dotted orange;*/
 }
 
 body {
   background-color: #333;
 }
 
-#submit {
-  border: 0px;
-  padding: 2px 15px;
-  background-color: #267660;
+header {
+background-color: #fff;
+color: #888;
+margin: 0 auto;
+height: 75px;
+padding: 0px 20px;
+}
+
+h1 {
+display: inline;
+font-size: 36px;
+font-family: 'Skranji', cursive;
+color: #6e1600;
+}
+
+main {
+  width: 960px;
+  margin: 0 auto;
+}
+
+li {
+  color: #eee;
+  display: inline-block;
+}
+
+p {
+  color: #267660;
 }
 
 table {
   background-color: rgba(0, 255, 170, 0.3);
-  border-radius: 5px;
+  border-radius: 3px;
+  margin: 10px auto;
+  padding: 5px;
 }
 
-td {
-  border-radius: 2px;
+th {
+  width: 50px;
 }
 
 input {
   display: block;
   margin: 5px;
+  width: 200px;
+  padding: 2px;
 }
 
-header {
+salmon {
+  width: 900px;
+  background-color: #fff;
+  height: 400px;
+}
 
+salmon.img {
+  margin: 10px auto;
+}
+
+#cookie_form {
+  color: #eee;
+  background-color: rgba(25, 25, 25, 0.4);
+  width: 300px;
+  padding: 20px
+}
+
+#submit {
+  border: none;
+  border-radius: 3px;
+  padding: 10px 30px;
+  background-color: #267660;
+  margin: 10px auto;
+}
+
+#chinook {
+  margin-top: 30px;
 }
