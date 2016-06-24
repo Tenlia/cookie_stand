@@ -95,18 +95,6 @@ CookieStand.prototype.cookieStandTableCells = function() {
   cookieTable.appendChild(trEl);
 };
 
-// function rowChecker() {
-//   for(var i = 0; i < idArray.length; i++){
-//     if(this.locationName === idArray[i]){
-//       document.getElementById(idArray[i]).remove();
-//       idArray.push(this.locationName);
-//       idArray.pop();
-//     //otherwise, just add it on and move the totals down
-//     }else{
-//       idArray.push(this.locationName);
-//     }
-// };
-
 // render the header and table cells with content
 var render = function() {
   makeHeaderCells(); //adds the header row
@@ -136,6 +124,13 @@ function handleCookieForm(event) {
 // creating new cookie stand object
   var newCookieStand = new CookieStand(locationName.value, minCust.value, maxCust.value, avgCookies.value, address.value, phoneNum.value);
 
+//check if row already exists
+  for(var i = 0; i < idArray.length; i++){
+    if(this.locationName === idArray[i]){
+      document.getElementById(idArray[i]).remove();
+      remove = idArray.splice(this.locationName);
+    }
+  }
 //create new cookie stand's row
   newCookieStand.cookieStandTableCells();
 
