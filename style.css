@@ -1,6 +1,6 @@
 * {
   font-family: 'Slabo 13px', serif;
-  outline: 1px dotted orange;
+  /*outline: 1px dotted orange;*/
 }
 
 body {
@@ -8,7 +8,6 @@ body {
 }
 
 header {
-/*background-color: #888;*/
 height: 175px;
 width: 960px;
 margin: 0px auto;
@@ -24,7 +23,7 @@ h1 {
   margin-bottom: 11px;
   width: 500px;
 }
-a {
+.link {
   background-color: #6e1600;
   text-decoration: none;
   color: #fff;
@@ -51,10 +50,63 @@ li {
   background-color: #fff;
 }
 
+h2 {
+  display: inline;
+  color: #014230;
+  font-family: 'Skranji', cursive;
+  font-size: 24px;
+  margin: 10px auto;
+}
+
 p {
-  background-color: #888;
-  padding: 10px;
+  /*background-color: #888;*/
+  padding: 30px;
   border-radius: 3px;
+  line-height: 1.25em;
+}
+
+#family {
+  width: 50%;
+  float: left;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.fishcookie {
+  margin-top: 25px;
+  height: 200px;
+  display: inline;
+}
+
+.fishcookie li {
+  width: 50px;
+  margin: 0px 50px;
+}
+
+.fishcookie h2 {
+  margin-left: 285px;
+}
+
+#fish {
+  margin-right: 70px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+#cookie {
+  margin-bottom: 20px;
+}
+
+#fishtocookie {
+  clear: left;
+}
+
+#store {
+  margin-left: 325px;
+}
+
+span {
+  color: #6e1600;
 }
 
 input {
@@ -69,16 +121,18 @@ table {
   border-radius: 3px;
   margin: 0px auto;
   padding-left: 10px;
+  line-height: 1.5em;
 }
 
 th {
-  /*width: 50px;*/
   margin: 2px 10px;
+  border: 1px dotted #000;
+  border-radius: 3px;
 }
 
-tr {
-  height: 50px;
-  margin-left: 10px;
+td {
+  border: 1px dotted #888;
+  border-radius: 3px;
 }
 
 #cookie_form {
@@ -99,7 +153,27 @@ tr {
   background-color: #267660;
   margin: 20px auto;
 }
-/*
-#chinook {
+
+.bar {
+  width: 25%;
+  margin-left: 40px;
+  height: 250px;
+}
+
+#bar {
+  width: 100%;
+  padding-left: 40px;
   margin-top: 30px;
-}*/
+}
+
+footer {
+  height: 30px;
+  width: 980px;
+  background-color: #6e1600;
+  margin: 0px auto;
+}
+
+h3 {
+  font-family: 'Slabo 13px', serif;
+  margin: 5px auto;
+}

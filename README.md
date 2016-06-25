@@ -16,3 +16,4 @@ font-family: 'Slabo 27px', serif;
 
 green:  #267660
 red:    #6e1600
+dark green: #014230
