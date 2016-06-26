@@ -7,6 +7,7 @@ body {
   background-color: #fff;
 }
 
+/*header section*/
 header {
 height: 175px;
 width: 960px;
@@ -23,6 +24,12 @@ h1 {
   margin-bottom: 11px;
   width: 500px;
 }
+
+.topfish {
+  width: 49%;
+  background-color: #fff;
+}
+
 .link {
   background-color: #6e1600;
   text-decoration: none;
@@ -34,6 +41,7 @@ h1 {
   border-radius: 3px;
 }
 
+/*main body section*/
 main {
   width: 960px;
   margin: 0px auto;
@@ -43,11 +51,6 @@ main {
 
 li {
   display: inline;
-}
-
-.topfish {
-  width: 49%;
-  background-color: #fff;
 }
 
 h2 {
@@ -64,11 +67,9 @@ p {
   line-height: 1.25em;
 }
 
-#family {
-  width: 50%;
-  float: left;
-  margin-right: 20px;
-  margin-bottom: 20px;
+/*index page main*/
+span {
+  color: #6e1600;
 }
 
 .fishcookie {
@@ -84,6 +85,13 @@ p {
 
 .fishcookie h2 {
   margin-left: 285px;
+}
+
+#family {
+  width: 50%;
+  float: left;
+  margin-right: 20px;
+  margin-bottom: 20px;
 }
 
 #fish {
@@ -104,10 +112,7 @@ p {
   margin-left: 325px;
 }
 
-span {
-  color: #6e1600;
-}
-
+/*sales page main*/
 input {
   display: block;
   margin: 5px;
@@ -134,6 +139,12 @@ td {
   border-radius: 3px;
 }
 
+.bar {
+  width: 25%;
+  margin-left: 40px;
+  height: 250px;
+}
+
 #cookie_form {
   color: #6e1600;
   background-color: #bbb;
@@ -153,18 +164,13 @@ td {
   margin: 20px auto;
 }
 
-.bar {
-  width: 25%;
-  margin-left: 40px;
-  height: 250px;
-}
-
 #bar {
   width: 100%;
   padding-left: 40px;
   margin-top: 30px;
 }
 
+/*footer section*/
 footer {
   height: 30px;
   width: 980px;
