@@ -124,13 +124,13 @@ function handleCookieForm(event) {
 // creating new cookie stand object
   var newCookieStand = new CookieStand(locationName.value, minCust.value, maxCust.value, avgCookies.value, address.value, phoneNum.value);
 
-//check if row already exists
-  for(var i = 0; i < idArray.length; i++){
-    if(this.locationName === idArray[i]){
-      document.getElementById(idArray[i]).remove();
-      remove = idArray.splice(this.locationName);
-    }
-  }
+//check if row already exists (still working on this one)
+  // for(var i = 0; i < idArray.length; i++){
+  //   if(this.locationName === idArray[i]){
+  //     document.getElementById(idArray[i]).remove();
+  //     remove = idArray.splice(this.locationName);
+  //   }
+  // }
 //create new cookie stand's row
   newCookieStand.cookieStandTableCells();
 
