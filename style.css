@@ -9,10 +9,10 @@ body {
 
 /*header section*/
 header {
-height: 175px;
-width: 960px;
-margin: 0px auto;
-font-family: 'Skranji', cursive;
+  height: 175px;
+  width: 960px;
+  margin: 0px auto;
+  font-family: 'Skranji', cursive;
 }
 
 h1 {
